@@ -1,0 +1,52 @@
+Classfile MyList.class
+  SHA-256 checksum 107e0a51407205cdd660a7f2d1003bcee712277eef07fbaf1ccb4b15d87515dc
+  Compiled from "MyList.java"
+public class audit.MyList extends java.util.ArrayList
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #11                         // audit/MyList
+  super_class: #2                         // java/util/ArrayList
+  interfaces: 0, fields: 0, methods: 2, attributes: 1
+Constant pool:
+   #1 = Methodref          #2.#3          // java/util/ArrayList."<init>":()V
+   #2 = Class              #4             // java/util/ArrayList
+   #3 = NameAndType        #5:#6          // "<init>":()V
+   #4 = Utf8               java/util/ArrayList
+   #5 = Utf8               <init>
+   #6 = Utf8               ()V
+   #7 = Methodref          #2.#8          // java/util/ArrayList.add:(Ljava/lang/Object;)Z
+   #8 = NameAndType        #9:#10         // add:(Ljava/lang/Object;)Z
+   #9 = Utf8               add
+  #10 = Utf8               (Ljava/lang/Object;)Z
+  #11 = Class              #12            // audit/MyList
+  #12 = Utf8               audit/MyList
+  #13 = Utf8               Code
+  #14 = Utf8               LineNumberTable
+  #15 = Utf8               SourceFile
+  #16 = Utf8               MyList.java
+{
+  public audit.MyList();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/util/ArrayList."<init>":()V
+         4: return
+      LineNumberTable:
+        line 25: 0
+
+  public boolean add(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokespecial #7                  // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+         5: ireturn
+      LineNumberTable:
+        line 28: 0
+}
+SourceFile: "MyList.java"
