@@ -1,0 +1,23 @@
+Exception in thread "main" java.lang.StackOverflowError
+	at java.base/jdk.internal.util.ArraysSupport.vectorizedMismatch(ArraysSupport.java:126)
+	at java.base/jdk.internal.util.ArraysSupport.mismatch(ArraysSupport.java:342)
+	at java.base/java.lang.StringLatin1.compareTo(StringLatin1.java:116)
+	at java.base/java.lang.StringLatin1.compareTo(StringLatin1.java:111)
+	at java.base/java.lang.String.compareTo(String.java:2034)
+	at edu.utexas.ece.tsvd4j.agent.Utility.getPairID(Utility.java:149)
+	at edu.utexas.ece.tsvd4j.agent.Utility.removeDangerItem(Utility.java:279)
+	at edu.utexas.ece.tsvd4j.agent.Utility.removeDependentInterceptionPoints(Utility.java:268)
+	at edu.utexas.ece.tsvd4j.agent.Utility.onCall(Utility.java:299)
+	at edu.utexas.ece.tsvd4j.agent.Proxy.add(Proxy.java:360)
+	at audit.MyList.add(MyList.java:28)
+
+... [truncated: repeats alternating Proxy.add(Proxy.java:361) / MyList.add(MyList.java:28) for ~140 more frames] ...
+
+	at edu.utexas.ece.tsvd4j.agent.Proxy.add(Proxy.java:361)
+	at audit.MyList.add(MyList.java:28)
+	at edu.utexas.ece.tsvd4j.agent.Proxy.add(Proxy.java:361)
+	at audit.MyList.add(MyList.java:28)
+	at edu.utexas.ece.tsvd4j.agent.Proxy.add(Proxy.java:361)
+	at audit.MyList.add(MyList.java:28)
+	at audit.Main.main(Main.java:12)
+Stop at ............................. 
