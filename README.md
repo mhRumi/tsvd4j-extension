@@ -1,3 +1,6 @@
+> **See [FINDINGS.md](FINDINGS.md) for the investigation on this branch:**
+> does skipping INVOKESPECIAL cost TSVD4J a real detection?
+
 # TSVD4J
 
 TSVD4J detects thread-safety violations for Java projects, which is based off of the [TSVD approach](https://github.com/microsoft/tsvd) with some extentions. 
