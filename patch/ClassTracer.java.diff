@@ -1,0 +1,58 @@
+diff --git a/tsvd4j-core/src/main/java/edu/utexas/ece/tsvd4j/agent/ClassTracer.java b/tsvd4j-core/src/main/java/edu/utexas/ece/tsvd4j/agent/ClassTracer.java
+index d5f9a46..1e0f582 100755
+--- a/tsvd4j-core/src/main/java/edu/utexas/ece/tsvd4j/agent/ClassTracer.java
++++ b/tsvd4j-core/src/main/java/edu/utexas/ece/tsvd4j/agent/ClassTracer.java
+@@ -93,7 +93,16 @@ public class ClassTracer extends ClassVisitor {
+         final String methodId = this.cn + "." + name;
+         final String methodName = name;
+ 
+-        return new MethodVisitor(Opcodes.ASM9, super.visitMethod(access, name, desc, signature, exceptions)) {
++        // Q4 dispatch-preserving fix: wrap the real writer in a LocalVariablesSorter
++        // so visitMethodInsn's INVOKESPECIAL branch below can borrow fresh,
++        // non-colliding local slots to stash a call's arguments while it records
++        // the access, then restore them and emit the original instruction
++        // completely unchanged -- instead of rewriting it into a virtual call to
++        // Proxy.<method>(), which is what causes the super.<method>() recursion.
++        final org.objectweb.asm.commons.LocalVariablesSorter lvs =
++                new org.objectweb.asm.commons.LocalVariablesSorter(access, desc, super.visitMethod(access, name, desc, signature, exceptions));
++
++        return new MethodVisitor(Opcodes.ASM9, lvs) {
+             @Override
+             public void visitLineNumber(int line, Label start) {
+                 lineNumber = line;
+@@ -162,7 +171,34 @@ public class ClassTracer extends ClassVisitor {
+                 if(api_status == 1) {
+                     String combined_name = owner + "/" + name + desc;
+                     // Only track specific API
+-                    if (listAPI.contains(combined_name)) {
++                    if (listAPI.contains(combined_name) && opcode == Opcodes.INVOKESPECIAL) {
++                        // Q4 dispatch-preserving fix: record the access WITHOUT
++                        // rewriting the call into a virtual dispatch through
++                        // Proxy.<method>(). Stack on entry: ..., receiver,
++                        // arg0..argN-1. Pop the args into fresh locals (reverse
++                        // order, since they pop in reverse), leaving just the
++                        // receiver; DUP it, report it to the same tracking
++                        // machinery Proxy.<method>() itself calls, then push the
++                        // args back in their original order and emit the
++                        // ORIGINAL INVOKESPECIAL untouched -- real, non-virtual
++                        // super dispatch, exactly as javac generated it.
++                        org.objectweb.asm.Type[] argTypes = org.objectweb.asm.Type.getArgumentTypes(desc);
++                        int[] slots = new int[argTypes.length];
++                        for (int i = argTypes.length - 1; i >= 0; i--) {
++                            slots[i] = lvs.newLocal(argTypes[i]);
++                            super.visitVarInsn(argTypes[i].getOpcode(Opcodes.ISTORE), slots[i]);
++                        }
++                        super.visitInsn(Opcodes.DUP);
++                        super.visitLdcInsn(lineNumber);
++                        super.visitLdcInsn(name);
++                        super.visitLdcInsn(cn);
++                        super.visitMethodInsn(Opcodes.INVOKESTATIC, "edu/utexas/ece/tsvd4j/agent/TrackOnly", "track",
++                                "(Ljava/lang/Object;ILjava/lang/String;Ljava/lang/String;)V", false);
++                        for (int i = 0; i < argTypes.length; i++) {
++                            super.visitVarInsn(argTypes[i].getOpcode(Opcodes.ILOAD), slots[i]);
++                        }
++                        super.visitMethodInsn(opcode, owner, name, desc, itf);
++                    } else if (listAPI.contains(combined_name)) {
+                         String methodParameter = combined_name.substring(combined_name.indexOf("(") + 1, combined_name.indexOf(")"));
+                         String returnVal = combined_name.substring(combined_name.lastIndexOf(")") + 1);
+                         super.visitLdcInsn(lineNumber);

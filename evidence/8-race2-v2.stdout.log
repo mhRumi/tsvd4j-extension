@@ -1,0 +1,8 @@
+Expected size: 16000
+Actual size:   15973
+Exceptions thrown by add(): 0
+Elapsed ms: 93370
+RACE CONFIRMED: unsynchronized concurrent super.add() corrupted RaceList.
+Conflicting pairs found: audit/RaceList|add|17:audit/RaceList|add|17
+ Total # Conflicting items are = 1
+ Total # Thread Count = 14910
