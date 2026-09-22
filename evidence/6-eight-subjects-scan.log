@@ -1,0 +1,56 @@
+Scan of the eight named subjects from tsvd4j-audit-log.html, using published
+Maven Central artifacts pinned to the version each subject used.
+
+===== Subject 1: org.apache.commons:commons-pool2:2.12.0 =====
+---
+Classes scanned: 84
+Tracked-API INVOKESPECIAL sites found: 0
+
+===== Subject 2: log4j:log4j:1.2.17 =====
+---
+Classes scanned: 314
+Tracked-API INVOKESPECIAL sites found: 0
+
+===== Subject 3: org.apache.derby:derby:10.14.2.0 =====
+---
+Classes scanned: 1751
+Tracked-API INVOKESPECIAL sites found: 0
+
+===== Subject 4: org.fluentd:fluent-logger:0.3.4 =====
+---
+Classes scanned: 14
+Tracked-API INVOKESPECIAL sites found: 0
+
+===== Subject 5: org.javadelight:delight-nashorn-sandbox:0.5.1 =====
+---
+Classes scanned: 28
+Tracked-API INVOKESPECIAL sites found: 0
+
+===== Subject 6: org.java-websocket:Java-WebSocket:1.5.4 =====
+---
+Classes scanned: 88
+Tracked-API INVOKESPECIAL sites found: 0
+
+===== Subject 7: commons-collections:commons-collections:3.1 =====
+HIT  commons-collections-3.1.jar!org/apache/commons/collections/MultiHashMap.class  [org/apache/commons/collections/MultiHashMap.<init>(Ljava/util/Map;)V]  -> java/util/HashMap/put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+HIT  commons-collections-3.1.jar!org/apache/commons/collections/MultiHashMap.class  [org/apache/commons/collections/MultiHashMap.readObject(Ljava/io/ObjectInputStream;)V]  -> java/util/HashMap/put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+HIT  commons-collections-3.1.jar!org/apache/commons/collections/MultiHashMap.class  [org/apache/commons/collections/MultiHashMap.totalSize()I]  -> java/util/HashMap/values()Ljava/util/Collection;
+HIT  commons-collections-3.1.jar!org/apache/commons/collections/MultiHashMap.class  [org/apache/commons/collections/MultiHashMap.put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;]  -> java/util/HashMap/put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+HIT  commons-collections-3.1.jar!org/apache/commons/collections/MultiHashMap.class  [org/apache/commons/collections/MultiHashMap.putAll(Ljava/lang/Object;Ljava/util/Collection;)Z]  -> java/util/HashMap/put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+HIT  commons-collections-3.1.jar!org/apache/commons/collections/MultiHashMap.class  [org/apache/commons/collections/MultiHashMap.containsValue(Ljava/lang/Object;)Z]  -> java/util/HashMap/entrySet()Ljava/util/Set;
+HIT  commons-collections-3.1.jar!org/apache/commons/collections/MultiHashMap.class  [org/apache/commons/collections/MultiHashMap.clear()V]  -> java/util/HashMap/entrySet()Ljava/util/Set;
+HIT  commons-collections-3.1.jar!org/apache/commons/collections/MultiHashMap.class  [org/apache/commons/collections/MultiHashMap.clear()V]  -> java/util/HashMap/clear()V
+HIT  commons-collections-3.1.jar!org/apache/commons/collections/MultiHashMap.class  [org/apache/commons/collections/MultiHashMap.access$201(Lorg/apache/commons/collections/MultiHashMap;)Ljava/util/Collection;]  -> java/util/HashMap/values()Ljava/util/Collection;
+---
+Classes scanned: 446
+Tracked-API INVOKESPECIAL sites found: 9
+
+===== Subject 8: commons-dbutils:commons-dbutils:1.7 =====
+HIT  commons-dbutils-1.7.jar!org/apache/commons/dbutils/BasicRowProcessor$CaseInsensitiveHashMap.class  [org/apache/commons/dbutils/BasicRowProcessor$CaseInsensitiveHashMap.containsKey(Ljava/lang/Object;)Z]  -> java/util/LinkedHashMap/containsKey(Ljava/lang/Object;)Z
+HIT  commons-dbutils-1.7.jar!org/apache/commons/dbutils/BasicRowProcessor$CaseInsensitiveHashMap.class  [org/apache/commons/dbutils/BasicRowProcessor$CaseInsensitiveHashMap.get(Ljava/lang/Object;)Ljava/lang/Object;]  -> java/util/LinkedHashMap/get(Ljava/lang/Object;)Ljava/lang/Object;
+HIT  commons-dbutils-1.7.jar!org/apache/commons/dbutils/BasicRowProcessor$CaseInsensitiveHashMap.class  [org/apache/commons/dbutils/BasicRowProcessor$CaseInsensitiveHashMap.put(Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;]  -> java/util/LinkedHashMap/remove(Ljava/lang/Object;)Ljava/lang/Object;
+HIT  commons-dbutils-1.7.jar!org/apache/commons/dbutils/BasicRowProcessor$CaseInsensitiveHashMap.class  [org/apache/commons/dbutils/BasicRowProcessor$CaseInsensitiveHashMap.put(Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;]  -> java/util/LinkedHashMap/put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+HIT  commons-dbutils-1.7.jar!org/apache/commons/dbutils/BasicRowProcessor$CaseInsensitiveHashMap.class  [org/apache/commons/dbutils/BasicRowProcessor$CaseInsensitiveHashMap.remove(Ljava/lang/Object;)Ljava/lang/Object;]  -> java/util/LinkedHashMap/remove(Ljava/lang/Object;)Ljava/lang/Object;
+---
+Classes scanned: 69
+Tracked-API INVOKESPECIAL sites found: 5
