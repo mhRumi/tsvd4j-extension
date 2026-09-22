@@ -1,0 +1,7 @@
+Expected size: 16000
+Actual size:   7051
+Exceptions thrown by add(): 0
+Elapsed ms: 11
+RACE CONFIRMED: unsynchronized concurrent super.add() corrupted RaceList.
+ Total # Conflicting items are = 0
+ Total # Thread Count = 0
